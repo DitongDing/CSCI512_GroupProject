@@ -18,11 +18,13 @@ public class ImageUtils {
 			return null;
 		}
 
+		boolean exist = false;
 		int xMin = original.getWidth(), yMin = original.getWidth(), xMax = -1, yMax = -1;
 
 		for (int x = 0; x < original.getWidth(); x++)
 			for (int y = 0; y < original.getHeight(); y++)
 				if (original.getRGB(x, y) != bordered.getRGB(x, y)) {
+					exist = true;
 					if (x < xMin)
 						xMin = x;
 					if (x > xMax)
@@ -33,7 +35,7 @@ public class ImageUtils {
 						yMax = y;
 				}
 
-		return new Rectangle(xMin, yMin, xMax - xMin, yMax - yMin);
+		return exist ? new Rectangle(xMin, yMin, xMax - xMin, yMax - yMin) : null;
 	}
 
 	public static List<Rectangle> findRectangles(BufferedImage original, List<BufferedImage> bordereds) {
