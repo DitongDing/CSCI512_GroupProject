@@ -84,4 +84,22 @@ public class ImageUtils {
 			height -= 2;
 		}
 	}
+
+	// TODO: <1 HIGH> similarity function.
+	public static boolean sameColor(Color expect, Color actual) {
+		boolean result = false;
+
+		double RGBDistanceThreshold = 0.3;
+		result = colorRGBDistance(expect, actual) < RGBDistanceThreshold;
+
+		return result;
+	}
+
+	// 0->the same, 1->totally different
+	public static double colorRGBDistance(Color expect, Color actual) {
+		double distance = Math.sqrt((actual.getRed() - expect.getRed()) * (actual.getRed() - expect.getRed())
+				+ (actual.getGreen() - expect.getGreen()) * (actual.getGreen() - expect.getGreen())
+				+ (actual.getRed() - expect.getRed()) * (actual.getRed() - expect.getRed())) / 255;
+		return distance;
+	}
 }
