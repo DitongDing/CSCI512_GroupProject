@@ -18,7 +18,7 @@ SikuliBase="#{TestBaseDir}/sikuli_os_x"
 Continue=false
 
 # if delete selector image
-DeleteImage=false
+DeleteImage=true
 
 Dict=Hash.new
 # Add component definition here.

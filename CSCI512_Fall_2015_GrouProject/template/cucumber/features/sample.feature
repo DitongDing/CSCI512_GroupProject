@@ -2,7 +2,7 @@ Feature: Sample feature for using test framework
 
 Scenario: Position invariants
 	Given open url 'http://www.google.com'
-	Then component 'search box' should be in the center
+	Then component 'search box' should be in the horizontal center
 	Then element with class 'jsb' should be in the horizontal center
 	Then element with class 'jsb' should not be in the vertical center
 	Then component 'sign in button' should be in the right
