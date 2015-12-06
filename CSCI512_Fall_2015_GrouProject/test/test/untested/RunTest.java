@@ -11,7 +11,7 @@ public class RunTest {
 		// Color test with border. Expect true
 		// String argus[] = { "./input/border/original.png", "./input/border/border", "color", "white", "./output/result" };
 		// Color test with Sikuli. Expect true
-		String argus[] = { "./input/sikuli/original.png", "./input/sikuli/signinbtn.png", "color", "#4285f4", "./output/result" };
+		String argus[] = { "./input/sikuli/original.png", "./input/sikuli/signinbtn.png", "color", "4285f4", "./output/result" };
 		// Position test with border. Expect true
 		// String argus[] = { "./input/border/original.png", "./input/border/border", "position", "center", "./output/result" };
 		// Position test with Sikuli. Expect true

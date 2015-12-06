@@ -12,6 +12,12 @@ ImageBase="#{BaseDir}/image"
 # sub image directory for sikuli
 SikuliBase="#{BaseDir}/sikuli"
 
+# if continue when encounter fail
+Continue=true
+
+# if delete selector image
+DeleteImage=true
+
 Dict=Hash.new
 # Add component definition here.
 # Dict["name"]="full path"

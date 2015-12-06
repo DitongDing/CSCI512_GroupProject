@@ -3,7 +3,7 @@ When /^add border to '(.+)'$/ do |id|
 end
 
 # position invariants
-Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? ((be in the (left|right|top|bottom|vertical center|horizontal center|center))|(be (red|green|blue|yellow|black|white|#[0-9A-Fa-f]{6}))|(exist))$/ do |selector, elementSelector, elementSelectorType, elementSelectorValue, componentSelector, componentSelectorName, reversed, rule, positionRule, positionProperty, colorRule, colorProperty, existenceRule|
+Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? ((be in the (left|right|top|bottom|vertical center|horizontal center|center))|(be (red|green|blue|yellow|black|white|[0-9A-Fa-f]{6}))|(exist))$/ do |selector, elementSelector, elementSelectorType, elementSelectorValue, componentSelector, componentSelectorName, reversed, rule, positionRule, positionProperty, colorRule, colorProperty, existenceRule|
   # initialize image directory
   invariantName=formatPath("#{selector} should#{reversed} #{rule}")
   baseDir="#{ImageBase}/#{invariantName}"
@@ -47,8 +47,13 @@ Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? (
 
   # execute jar to check invariant
   passed=`java -jar #{JarFile} "#{original}" "#{selector}" "#{type}" "#{property}" "#{result}"`
-  # TODO: finish expect;finish color; delete baseDir
-  #expect(passed).to(be, true)
+  if !Continue
+    # TODO: finish expect
+    expect(passed).to(be, true)
+  end
+  if DeleteImage
+    FileUtils.rm_r baseDir
+  end
 end
 
 def formatPath(path)

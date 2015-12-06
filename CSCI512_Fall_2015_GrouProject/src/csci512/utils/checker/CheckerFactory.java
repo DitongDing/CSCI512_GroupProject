@@ -61,7 +61,7 @@ public class CheckerFactory {
 				result = new ColorChecker(original, rectangles, Color.BLACK);
 			else if ("white".equals(property))
 				result = new ColorChecker(original, rectangles, Color.WHITE);
-			else if (Pattern.compile("#[0-9A-Fa-f]{6}").matcher(property).matches())
+			else if (Pattern.compile("[0-9A-Fa-f]{6}").matcher(property).matches())
 				result = new ColorChecker(original, rectangles, new Color(Integer.valueOf(property.substring(1), 16)));
 		} else if ("existence".equals(type)) {
 			if ("exist".equals(property))

@@ -91,7 +91,7 @@ public class ImageUtils {
 	public static boolean sameColor(Color expect, Color actual) {
 		boolean result = false;
 
-		double RGBDistanceThreshold = 0.3;
+		double RGBDistanceThreshold = 0.4;
 		result = colorRGBDistance(expect, actual) < RGBDistanceThreshold;
 
 		return result;

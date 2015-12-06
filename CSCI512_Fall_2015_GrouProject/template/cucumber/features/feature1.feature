@@ -4,8 +4,8 @@ Scenario:
 	Given open url 'http://www.google.com'
 	Then component 'sign in button' should be in the right
 	Then component 'sign in button' should be in the left
-	#Then component 'search box' should be white
-	#Then component 'sign in button' should be #4285f4
+	Then component 'search box' should be white
+	Then component 'sign in button' should be 4285f4
 	
 	#Then element with ID 'sfdiv' should exist
 	#Then element with ID 'sfdiv' should be in the left
