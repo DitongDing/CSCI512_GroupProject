@@ -17,10 +17,10 @@ public class RunTest {
 		// Position test with Sikuli. Expect true
 		// String argus[] = { "./input/sikuli/original.png", "./input/sikuli/signinbtn.png", "position", "bottom", "./output/result" };
 		// Size test with Sikuli. Expect true
-		// String argus[] = { "./input/sikuli/original.png", "./input/sikuli/signinbtn.png", "size", "smaller, 35, height", "./output/result", "reversed" };
+		 String argus[] = { "./input/sikuli/original.png", "./input/sikuli/signinbtn.png", "size", "smaller, 35, height", "./output/result", "reversed" };
 
-		String argus[] = { "./template/image/element_with_class_'jsb'_should_not_be_in_the_vertical_center/original.png",
-				"./template/image/element_with_class_'jsb'_should_not_be_in_the_vertical_center/bordered", "position", "vertical center", "./output/result" };
+//		String argus[] = { "./template/image/element_with_class_'jsb'_should_not_be_in_the_vertical_center/original.png",
+//				"./template/image/element_with_class_'jsb'_should_not_be_in_the_vertical_center/bordered", "position", "vertical center", "./output/result" };
 
 		Run.main(argus);
 	}

@@ -3,6 +3,7 @@ System requirement:
 	OS: Windows 10, OS X El Capitan
 	Software:
 		Testing: Ruby (2.1 for Windows, any 2.x version for others), Java, Cucumber, Capybara, selenium-webdriver, Fire fox
+		Build: maven
 ==================================================
 Software installation instruction:
 	Ruby: Just install it. Remeber to add to path
@@ -11,6 +12,7 @@ Software installation instruction:
 	selenium-webdriver: gem install selenium-webdriver
 	rspec: gem install rspec
 	Fire fox: Just install it. Remeber to add to path
+	Sikuli: build needed, for downloading required libs for Sikuli
 ==================================================
 Rule definition (in cucumber "When" statement):
 	Position invariant:
