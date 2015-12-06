@@ -21,8 +21,15 @@ DeleteImage=true
 Dict=Hash.new
 # Add component definition here.
 # Dict["name"]="full path"
+Dict["bing tool bar"]="#{SikuliBase}/bingtoolbar.png"
+Dict["G icon"]="#{SikuliBase}/G.png"
+Dict["Google bottom"]="#{SikuliBase}/googlebottom.png"
 Dict["search box"]="#{SikuliBase}/searchbox.png"
 Dict["sign in button"]="#{SikuliBase}/signinbtn.png"
+Dict["stackoverflow header"]="#{SikuliBase}/stackoverflowheader.png"
+Dict["stackoverflow header tool bar"]="#{SikuliBase}/stackoverflowheadertoolbar.png"
+Dict["stackoverflow icon"]="#{SikuliBase}/stackoverflowicon.png"
+Dict["twitter icon"]="#{SikuliBase}/twittericon.png"
 
 # jar file path. DO NOT CHANGE
 JarFile="#{TestBaseDir}/jar/VISL-1.0.jar"
@@ -30,6 +37,9 @@ JarFile="#{TestBaseDir}/jar/VISL-1.0.jar"
 Before do
   if !File.exists? ImageBase
     FileUtils.mkdir ImageBase
+  end
+  if !File.exists? ResultBase
+    FileUtils.mkdir ResultBase
   end
 end
 

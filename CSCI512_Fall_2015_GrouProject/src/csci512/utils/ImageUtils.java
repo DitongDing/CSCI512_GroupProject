@@ -87,7 +87,18 @@ public class ImageUtils {
 		}
 	}
 
-	// TODO: <1 HIGH> similarity function. consider gamma, color weight (blue is less important)
+	private static class PreprocessedColor {
+		public double R;
+		public double G;
+		public double B;
+
+		public PreprocessedColor(Color color, double gamma, double wR, double wG, double wB) {
+			R = Math.pow(color.getRed() / 255.0, gamma) * wR;
+			G = Math.pow(color.getGreen() / 255.0, gamma) * wG;
+			B = Math.pow(color.getBlue() / 255.0, gamma) * wB;
+		}
+	}
+
 	public static boolean sameColor(Color expect, Color actual) {
 		boolean result = false;
 
@@ -99,9 +110,24 @@ public class ImageUtils {
 
 	// 0->the same, 1->totally different
 	public static double colorRGBDistance(Color expect, Color actual) {
-		double distance = Math.sqrt((actual.getRed() - expect.getRed()) * (actual.getRed() - expect.getRed())
-				+ (actual.getGreen() - expect.getGreen()) * (actual.getGreen() - expect.getGreen())
-				+ (actual.getRed() - expect.getRed()) * (actual.getRed() - expect.getRed())) / 255;
+		double distance = 1;
+
+		// the smaller the brighter
+		double gamma = 1 / 2.0;
+		double wR = 1;
+		double wG = 1;
+		double wB = 0.8;
+		double MAX = Math.sqrt(wR * wR + wG * wG + wB * wB);
+
+		// Preprocess: normalization -> gamma correction -> color weight
+		PreprocessedColor normalizedExpect = new PreprocessedColor(expect, gamma, wR, wG, wB);
+		PreprocessedColor normalizedActual = new PreprocessedColor(actual, gamma, wR, wG, wB);
+
+		// Normalized Euclidean distance equation
+		distance = Math.sqrt((normalizedExpect.R - normalizedActual.R) * (normalizedExpect.R - normalizedActual.R)
+				+ (normalizedExpect.G - normalizedActual.G) * (normalizedExpect.G - normalizedActual.G)
+				+ (normalizedExpect.B - normalizedActual.B) * (normalizedExpect.B - normalizedActual.B)) / MAX;
+
 		return distance;
 	}
 }

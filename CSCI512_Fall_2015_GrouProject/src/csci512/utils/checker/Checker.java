@@ -26,6 +26,9 @@ public abstract class Checker {
 
 	protected Boolean result;
 
+	// this property determine if all candidate should be valid for the checker.
+	protected Boolean complete;
+
 	public Checker(Boolean reversed, BufferedImage original, List<Rectangle> rectangles) {
 		this.reversed = reversed;
 		this.original = original;
@@ -33,6 +36,7 @@ public abstract class Checker {
 		failed = new ArrayList<Rectangle>();
 		passed = new ArrayList<Rectangle>();
 		result = null;
+		complete = true;
 	}
 
 	// Default implementation
@@ -41,10 +45,13 @@ public abstract class Checker {
 
 		if (result)
 			for (Rectangle rectangle : rectangles) {
-				if (checkRectangle(rectangle))
+				if (checkRectangle(rectangle)) {
+					if (!complete)
+						result = true;
 					passed.add(rectangle);
-				else {
-					result = false;
+				} else {
+					if (complete)
+						result = false;
 					failed.add(rectangle);
 				}
 			}

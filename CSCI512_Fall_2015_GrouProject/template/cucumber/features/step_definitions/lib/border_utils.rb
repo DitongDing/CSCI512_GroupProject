@@ -10,7 +10,9 @@ def add_border_id(id, basedir)
   `mkdir "#{basedir}/bordered"`
   page.execute_script "
     elements=new Array();
-    elements.push(document.getElementById('#{id}'));
+    element = document.getElementById('#{id}');
+    if(element != null)
+      elements.push(element);
   "
   add_border basedir
 end
@@ -45,7 +47,7 @@ def add_border(basedir)
     save_screenshot "#{basedir}/bordered/bordered_#{index}.png"
     original_color
   end
-  
+
   for index in 0...length do
     page.execute_script "
       elements[#{index}].style.border='#{originalBorder[index]}';

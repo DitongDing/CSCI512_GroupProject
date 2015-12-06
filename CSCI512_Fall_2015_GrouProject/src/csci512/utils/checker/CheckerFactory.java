@@ -44,7 +44,6 @@ public class CheckerFactory {
 	private static Checker getChecker(BufferedImage original, List<Rectangle> rectangles, String type, String property, Boolean reversed) {
 		Checker result = null;
 
-		// TODO: <2 MID> finish CheckerFactory.newChecker()
 		if ("position".equals(type)) {
 			if (Pattern.compile("left|right|top|bottom|(((vertical|horizontal) )?center)").matcher(property).matches())
 				result = new PositionChecker(reversed, original, rectangles, property);
@@ -62,7 +61,7 @@ public class CheckerFactory {
 			else if ("white".equals(property))
 				result = new ColorChecker(reversed, original, rectangles, Color.WHITE);
 			else if (Pattern.compile("[0-9A-Fa-f]{6}").matcher(property).matches())
-				result = new ColorChecker(reversed, original, rectangles, new Color(Integer.valueOf(property.substring(1), 16)));
+				result = new ColorChecker(reversed, original, rectangles, new Color(Integer.valueOf(property, 16)));
 		} else if ("existence".equals(type)) {
 			result = new ExistenceChecker(reversed, original, rectangles);
 		} else if ("size".equals(type)) {

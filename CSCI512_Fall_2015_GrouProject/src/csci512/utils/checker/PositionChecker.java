@@ -29,7 +29,7 @@ public class PositionChecker extends Checker {
 
 		if (position.equals("left"))
 			result = horizontalPercentage <= -percentageThreshold;
-		else if (position.equals("vertical center"))
+		else if (position.equals("horizontal center"))
 			result = Math.abs(horizontalPercentage) < percentageThreshold;
 		else if (position.equals("right"))
 			result = horizontalPercentage >= percentageThreshold;

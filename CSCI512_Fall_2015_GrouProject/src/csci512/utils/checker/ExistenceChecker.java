@@ -7,12 +7,13 @@ import java.util.List;
 public class ExistenceChecker extends Checker {
 	public ExistenceChecker(Boolean reversed, BufferedImage original, List<Rectangle> rectangles) {
 		super(reversed, original, rectangles);
+		complete = false;
 	}
 
 	// return true only if: 1) shouldExist = false, rectangles.isEmpty = true, or 2) shouldExist = true, rectangles.isEmpty = false
 	@Override
 	protected boolean check() {
-		boolean result = rectangles.isEmpty();
+		boolean result = !rectangles.isEmpty();
 		if (result)
 			passed = rectangles;
 		else
