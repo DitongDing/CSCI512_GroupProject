@@ -61,7 +61,7 @@ public class CheckerFactory {
 				result = new ColorChecker(original, rectangles, Color.BLACK);
 			else if ("white".equals(property))
 				result = new ColorChecker(original, rectangles, Color.WHITE);
-			else if (Pattern.compile("#[0-9A-F]{6}").matcher(property).matches())
+			else if (Pattern.compile("#[0-9A-Fa-f]{6}").matcher(property).matches())
 				result = new ColorChecker(original, rectangles, new Color(Integer.valueOf(property.substring(1), 16)));
 		} else if ("existence".equals(type)) {
 			if ("exist".equals(property))
@@ -70,7 +70,7 @@ public class CheckerFactory {
 				result = new ExistenceChecker(original, rectangles, false);
 		}
 		if (result == null)
-			System.out.println(String.format("CheckerFactory.newChecker: type error, please check (type = %s, property = %s)", type, property));
+			System.err.println(String.format("CheckerFactory.newChecker: type error, please check (type = %s, property = %s)", type, property));
 
 		return result;
 	}

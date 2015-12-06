@@ -25,12 +25,14 @@ end
 
 def add_border(basedir)
   length=page.evaluate_script("elements.length")
+  originalBorder=Array.new
 
   for index in 0...length do
     page.execute_script "
       style=elements[#{index}].style;
       borderColor=style.borderColor;
     "
+    originalBorder << page.evaluate_script("style.border")
     original_color
   end
   save_screenshot "#{basedir}/original.png"
@@ -42,6 +44,12 @@ def add_border(basedir)
     bordered_color
     save_screenshot "#{basedir}/bordered/bordered_#{index}.png"
     original_color
+  end
+  
+  for index in 0...length do
+    page.execute_script "
+      elements[#{index}].style.border='#{originalBorder[index]}';
+    "
   end
 end
 
@@ -58,8 +66,4 @@ def bordered_color
   page.execute_script "
     style.borderColor='black';
   "
-end
-
-def save_screenshot(filename)
-  page.save_screenshot filename
 end

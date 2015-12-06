@@ -59,7 +59,7 @@ public abstract class Checker {
 
 	private void saveResult(String resultImage) {
 		if (result == null) {
-			System.out.println("Checker.saveResult: use saveResult after call check");
+			System.err.println("Checker.saveResult: use saveResult after call check");
 		} else {
 			resultImage += (result ? "_passed" : "_failed") + ".png";
 			File result = new File(resultImage);

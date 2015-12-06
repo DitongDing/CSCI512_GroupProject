@@ -8,7 +8,7 @@ import java.util.List;
 import csci512.utils.ImageUtils;
 
 public class ColorChecker extends Checker {
-	private static double percentageThreshold = 0.75;
+	private static double percentageThreshold = 0.65;
 
 	private Color expect;
 

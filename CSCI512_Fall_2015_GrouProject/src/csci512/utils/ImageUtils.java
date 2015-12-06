@@ -14,7 +14,7 @@ import org.sikuli.script.Pattern;
 public class ImageUtils {
 	public static Rectangle findRectangle(BufferedImage original, BufferedImage bordered) {
 		if (original == null || bordered == null || original.getHeight() != bordered.getHeight() || original.getWidth() != bordered.getWidth()) {
-			System.out.println("ImageUtils.findRectangle: images are null or not the same size");
+			System.err.println("ImageUtils.findRectangle: images are null or not the same size");
 			return null;
 		}
 
@@ -87,7 +87,7 @@ public class ImageUtils {
 		}
 	}
 
-	// TODO: <1 HIGH> similarity function.
+	// TODO: <1 HIGH> similarity function. consider gamma, color weight (blue is less important)
 	public static boolean sameColor(Color expect, Color actual) {
 		boolean result = false;
 

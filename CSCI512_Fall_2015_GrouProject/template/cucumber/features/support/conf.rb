@@ -1,14 +1,22 @@
 # Please use '/' for all paths.
 
 # test framework base directory
-Base="D:/Workspace/__GitLocalDatabase/CSCI512/CSCI512_Fall_2015_GrouProject/template"
+BaseDir="D:/Workspace/__GitLocalDatabase/CSCI512/CSCI512_Fall_2015_GrouProject/template"
+
+# result directory path
+ResultBase="#{BaseDir}/result"
 
 # image base directory for class/id based visual invariants
-BorderImageBase=""
+ImageBase="#{BaseDir}/image"
 
 # sub image directory for sikuli
-SikuliBase=""
+SikuliBase="#{BaseDir}/sikuli"
 
 Dict=Hash.new
 # Add component definition here.
 # Dict["name"]="full path"
+Dict["search box"]="#{SikuliBase}/searchbox.png"
+Dict["sign in button"]="#{SikuliBase}/signinbtn.png"
+
+# jar file path. DO NOT CHANGE
+JarFile="#{BaseDir}/jar/VISL-1.0.jar"

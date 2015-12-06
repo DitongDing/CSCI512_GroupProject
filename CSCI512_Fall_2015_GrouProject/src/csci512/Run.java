@@ -9,7 +9,7 @@ import csci512.utils.checker.CheckerFactory;
 public class Run {
 	public static void main(String[] args) {
 		if (args == null || args.length != 5) {
-			System.out.println("Usage: Run original subImage|borderedsDir type property resultImage");
+			System.err.println("Usage: Run original subImage|borderedsDir type property resultImage");
 			System.exit(-1);
 		}
 
