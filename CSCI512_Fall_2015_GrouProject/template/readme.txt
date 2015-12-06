@@ -51,5 +51,5 @@ Template use guide:
 Special note:
 1. Sikuli does not support scaled sub image, please take screen shot in the same environment
 2. Use full path every where. As '/' can be recognized in Windows, use '/' in all platform
-3. size checker is in pixel
+3. Size checker is in pixel
 4. color checker is not very useful, as it calculate the pixel color rather than consider more details.
