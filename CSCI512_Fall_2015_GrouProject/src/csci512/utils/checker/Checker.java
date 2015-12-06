@@ -13,10 +13,12 @@ import javax.imageio.ImageIO;
 import csci512.utils.ImageUtils;
 
 public abstract class Checker {
+	// for result image
 	private static Color passedColor = Color.GREEN;
 	private static Color failedColor = Color.RED;
 	private static int thickness = 5;
 
+	protected Boolean reversed;
 	protected BufferedImage original;
 	protected List<Rectangle> rectangles;
 	protected List<Rectangle> failed;
@@ -24,7 +26,8 @@ public abstract class Checker {
 
 	protected Boolean result;
 
-	public Checker(BufferedImage original, List<Rectangle> rectangles) {
+	public Checker(Boolean reversed, BufferedImage original, List<Rectangle> rectangles) {
+		this.reversed = reversed;
 		this.original = original;
 		this.rectangles = rectangles;
 		failed = new ArrayList<Rectangle>();
@@ -53,7 +56,13 @@ public abstract class Checker {
 
 	public void validate(String resultImage) {
 		result = check();
-		System.out.println(result);
+		if (reversed) {
+			result = !result;
+			List<Rectangle> tmp = failed;
+			failed = passed;
+			passed = tmp;
+		}
+		System.out.print(result ? "passed" : "failed");
 		saveResult(resultImage);
 	}
 

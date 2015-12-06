@@ -12,8 +12,8 @@ public class ColorChecker extends Checker {
 
 	private Color expect;
 
-	public ColorChecker(BufferedImage original, List<Rectangle> rectangles, Color expect) {
-		super(original, rectangles);
+	public ColorChecker(Boolean reversed, BufferedImage original, List<Rectangle> rectangles, Color expect) {
+		super(reversed, original, rectangles);
 		this.expect = expect;
 	}
 

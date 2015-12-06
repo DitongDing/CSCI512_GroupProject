@@ -3,11 +3,14 @@ When /^add border to '(.+)'$/ do |id|
 end
 
 # position invariants
-Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? ((be in the (left|right|top|bottom|vertical center|horizontal center|center))|(be (red|green|blue|yellow|black|white|[0-9A-Fa-f]{6}))|(exist))$/ do |selector, elementSelector, elementSelectorType, elementSelectorValue, componentSelector, componentSelectorName, reversed, rule, positionRule, positionProperty, colorRule, colorProperty, existenceRule|
+Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? ((be in the (left|right|top|bottom|vertical center|horizontal center|center))|(be (red|green|blue|yellow|black|white|[0-9A-Fa-f]{6}))|(exist)|(be (smaller|larger) than (\d+) in (width|height|area)))$/ do |selector, elementSelector, elementSelectorType, elementSelectorValue, componentSelector, componentSelectorName, reversed, rule, positionRule, positionProperty, colorRule, colorProperty, existenceRule, sizeRule, sizeDirection, sizeDatum, sizeMetric|
   # initialize image directory
   invariantName=formatPath("#{selector} should#{reversed} #{rule}")
   baseDir="#{ImageBase}/#{invariantName}"
-  `mkdir "#{baseDir}"`
+  if File.exists? baseDir
+    FileUtils.rm_r baseDir
+  end
+  FileUtils.mkdir baseDir
 
   # declare jar arguments
   original="#{baseDir}/original.png"
@@ -15,6 +18,7 @@ Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? (
   type=nil
   property=nil
   result="#{ResultBase}/#{invariantName}"
+  reversed_arg=reversed != nil ? "reversed" : ""
 
   # initialize selector
   if elementSelector != nil
@@ -24,7 +28,8 @@ Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? (
     when "tag" then add_border_tag(elementSelectorValue, baseDir)
     end
     selector="#{baseDir}/bordered"
-  elsif componentSelector != nil && Dict[componentSelectorName] != nil
+  elsif componentSelector != nil
+    expect(Dict[componentSelectorName]).not_to be nil
     save_screenshot "#{baseDir}/original.png"
     selector=Dict[componentSelectorName]
   else
@@ -40,19 +45,18 @@ Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? (
     property=colorProperty
   elsif existenceRule != nil
     type="existence"
-    property=reversed ? "not exist" : "exist"
+    property=""
+  elsif sizeRule != nil
+    type="size"
+    property="#{sizeDirection}, #{sizeDatum}, #{sizeMetric}"
   else
     puts "rule error: #{rule}"
   end
 
   # execute jar to check invariant
-  passed=`java -jar #{JarFile} "#{original}" "#{selector}" "#{type}" "#{property}" "#{result}"`
+  result=`java -jar #{JarFile} "#{original}" "#{selector}" "#{type}" "#{property}" "#{result}" #{reversed_arg}`
   if !Continue
-    # TODO: finish expect
-    expect(passed).to(be, true)
-  end
-  if DeleteImage
-    FileUtils.rm_r baseDir
+    expect(result).to eq "passed"
   end
 end
 

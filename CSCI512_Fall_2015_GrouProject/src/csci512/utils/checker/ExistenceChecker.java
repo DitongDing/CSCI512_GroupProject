@@ -5,17 +5,14 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class ExistenceChecker extends Checker {
-	private boolean shouldExist;
-
-	public ExistenceChecker(BufferedImage original, List<Rectangle> rectangles, boolean shouldExist) {
-		super(original, rectangles);
-		this.shouldExist = shouldExist;
+	public ExistenceChecker(Boolean reversed, BufferedImage original, List<Rectangle> rectangles) {
+		super(reversed, original, rectangles);
 	}
 
 	// return true only if: 1) shouldExist = false, rectangles.isEmpty = true, or 2) shouldExist = true, rectangles.isEmpty = false
 	@Override
 	protected boolean check() {
-		boolean result = shouldExist ^ rectangles.isEmpty();
+		boolean result = rectangles.isEmpty();
 		if (result)
 			passed = rectangles;
 		else

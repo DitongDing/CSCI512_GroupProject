@@ -10,8 +10,8 @@ public class PositionChecker extends Checker {
 
 	private String position;
 
-	public PositionChecker(BufferedImage original, List<Rectangle> rectangles, String position) {
-		super(original, rectangles);
+	public PositionChecker(Boolean reversed, BufferedImage original, List<Rectangle> rectangles, String position) {
+		super(reversed, original, rectangles);
 		this.position = position;
 	}
 

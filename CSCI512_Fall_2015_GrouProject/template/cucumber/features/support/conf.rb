@@ -1,19 +1,19 @@
 # Please use '/' for all paths.
 
 # test framework base directory
-BaseDir="D:/Workspace/__GitLocalDatabase/CSCI512/CSCI512_Fall_2015_GrouProject/template"
+TestBaseDir="D:/Workspace/__GitLocalDatabase/CSCI512/CSCI512_Fall_2015_GrouProject/template"
 
 # result directory path
-ResultBase="#{BaseDir}/result"
+ResultBase="#{TestBaseDir}/result"
 
 # image base directory for class/id based visual invariants
-ImageBase="#{BaseDir}/image"
+ImageBase="#{TestBaseDir}/image"
 
 # sub image directory for sikuli
-SikuliBase="#{BaseDir}/sikuli"
+SikuliBase="#{TestBaseDir}/sikuli"
 
 # if continue when encounter fail
-Continue=true
+Continue=false
 
 # if delete selector image
 DeleteImage=true
@@ -25,4 +25,16 @@ Dict["search box"]="#{SikuliBase}/searchbox.png"
 Dict["sign in button"]="#{SikuliBase}/signinbtn.png"
 
 # jar file path. DO NOT CHANGE
-JarFile="#{BaseDir}/jar/VISL-1.0.jar"
+JarFile="#{TestBaseDir}/jar/VISL-1.0.jar"
+
+Before do
+  if !File.exists? ImageBase
+    FileUtils.mkdir ImageBase
+  end
+end
+
+After do
+  if DeleteImage
+    FileUtils.rm_r ImageBase
+  end
+end
