@@ -69,7 +69,7 @@ public abstract class Checker {
 			failed = passed;
 			passed = tmp;
 		}
-		System.out.print(result ? "passed" : "failed");
+		System.out.print("VISL_" + (result ? "passed" : "failed"));
 		saveResult(resultImage);
 	}
 

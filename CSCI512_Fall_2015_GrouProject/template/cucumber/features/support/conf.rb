@@ -1,8 +1,9 @@
 # Please use '/' for all paths.
 
 # test framework base directory
-# TestBaseDir="D:/Workspace/__GitLocalDatabase/CSCI512/CSCI512_Fall_2015_GrouProject/template"
-TestBaseDir="/Users/Ditong/Documents/Programming/__GitDatabase/CSCI512_GroupProject/CSCI512_Fall_2015_GrouProject/template"
+TestBaseDir="D:/Workspace/__GitLocalDatabase/CSCI512/CSCI512_Fall_2015_GrouProject/template"
+# TestBaseDir="/Users/Ditong/Documents/Programming/__GitDatabase/CSCI512_GroupProject/CSCI512_Fall_2015_GrouProject/template"
+# TestBaseDir="/home/std/Desktop/template"
 
 # result directory path
 ResultBase="#{TestBaseDir}/result"
@@ -11,8 +12,8 @@ ResultBase="#{TestBaseDir}/result"
 ImageBase="#{TestBaseDir}/image"
 
 # sub image directory for sikuli
-# SikuliBase="#{TestBaseDir}/sikuli_windows"
-SikuliBase="#{TestBaseDir}/sikuli_os_x"
+SikuliBase="#{TestBaseDir}/sikuli_windows"
+# SikuliBase="#{TestBaseDir}/sikuli_os_x"
 
 # if continue when encounter fail
 Continue=false

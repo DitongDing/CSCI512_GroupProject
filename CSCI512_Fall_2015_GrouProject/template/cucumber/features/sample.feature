@@ -33,6 +33,7 @@ Scenario: Size invariants
 	Given open url 'http://www.google.com'
 	Then component 'sign in button' should not be larger than 120 in height
 	Then component 'sign in button' should be larger than 10 in width
+	Then component 'sign in button' should be equal to 2695 in area
 	
 	### the following will fail
 	# Then component 'sign in button' should be smaller than 10 in area

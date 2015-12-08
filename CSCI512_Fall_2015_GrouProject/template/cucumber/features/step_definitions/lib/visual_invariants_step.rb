@@ -3,7 +3,7 @@ When /^add border to '(.+)'$/ do |id|
 end
 
 # position invariants
-Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? ((be in the (left|right|top|bottom|vertical center|horizontal center|center))|(be (red|green|blue|yellow|black|white|[0-9A-Fa-f]{6}))|(exist)|(be (smaller|larger) than (\d+) in (width|height|area)))$/ do |selector, elementSelector, elementSelectorType, elementSelectorValue, componentSelector, componentSelectorName, reversed, rule, positionRule, positionProperty, colorRule, colorProperty, existenceRule, sizeRule, sizeDirection, sizeDatum, sizeMetric|
+Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? ((be in the (left|right|top|bottom|vertical center|horizontal center|center))|(be (red|green|blue|yellow|black|white|[0-9A-Fa-f]{6}))|(exist)|(be (smaller than|larger than|equal to) (\d+) in (width|height|area)))$/ do |selector, elementSelector, elementSelectorType, elementSelectorValue, componentSelector, componentSelectorName, reversed, rule, positionRule, positionProperty, colorRule, colorProperty, existenceRule, sizeRule, sizeDirection, sizeDatum, sizeMetric|
   # initialize image directory
   invariantName=formatPath("#{selector} should#{reversed} #{rule}")
   baseDir="#{ImageBase}/#{invariantName}"
@@ -48,13 +48,14 @@ Then /^((element with (class|ID|tag) '(.+)')|(component '(.+)')) should( not)? (
     property=""
   elsif sizeRule != nil
     type="size"
-    property="#{sizeDirection}, #{sizeDatum}, #{sizeMetric}"
+    property="#{sizeDirection[0...sizeDirection.index(" ")]}, #{sizeDatum}, #{sizeMetric}"
   else
     puts "rule error: #{rule}"
   end
 
   # execute jar to check invariant
   result=`java -jar #{JarFile} "#{original}" "#{selector}" "#{type}" "#{property}" "#{result}" #{reversed_arg}`
+  result=result.include?("VISL_passed") ? "passed" : "failed"
   if !Continue
     expect(result).to eq "passed"
   end
